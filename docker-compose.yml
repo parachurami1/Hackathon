@@ -12,7 +12,7 @@ services:
     environment:
       - DB_SERVER=db
       - MYSQL_USER=root
-      - MYSQL_PASSWORD=""
+      - MYSQL_PASSWORD=root_password
       - MYSQL_DATABASE=hackathon1
     depends_on:
       - db
@@ -23,7 +23,7 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: root_password
       MYSQL_DATABASE: hackathon1
-      MYSQL_USER: user
+      MYSQL_USER: root
       MYSQL_PASSWORD: ""
     volumes:
       - db_data:/var/lib/mysql
