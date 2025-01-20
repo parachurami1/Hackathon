@@ -11,7 +11,7 @@ services:
       - ./site:/var/www/html
     environment:
       - DB_SERVER=db
-      - MYSQL_USER=user
+      - MYSQL_USER=root
       - MYSQL_PASSWORD=""
       - MYSQL_DATABASE=hackathon1
     depends_on:
