@@ -9,6 +9,11 @@ services:
       - "8080:80"
     volumes:
       - ./site:/var/www/html
+    environment:
+      - DB_SERVER=db
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=""
+      - MYSQL_DATABASE=hackathon1
     depends_on:
       - db
 
