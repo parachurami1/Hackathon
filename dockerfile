@@ -25,8 +25,7 @@ WORKDIR /var/www/html
 COPY ./site /var/www/html/
 
 # Set appropriate permissions
-RUN chmod -R 755 /var/www/html && chown -R www-data:www-data /var/www/html \
-    && mysql -u root -p
+RUN chmod -R 755 /var/www/html && chown -R www-data:www-data /var/www/html
 
 # Expose port 80 for the Apache server
 EXPOSE 80
