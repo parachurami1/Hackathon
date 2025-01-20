@@ -24,7 +24,7 @@ services:
       MYSQL_ROOT_PASSWORD: root_password
       MYSQL_DATABASE: hackathon1
       MYSQL_USER: root
-      MYSQL_PASSWORD: ""
+      MYSQL_PASSWORD: root_password
     volumes:
       - db_data:/var/lib/mysql
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql:ro
