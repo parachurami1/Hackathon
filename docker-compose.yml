@@ -10,7 +10,7 @@ services:
     volumes:
       - ./site:/var/www/html
     environment:
-      - DB_SERVER=db
+      - DB_SERVER=localhost
       - MYSQL_USER=root
       - MYSQL_PASSWORD=root_password
       - MYSQL_DATABASE=hackathon1
