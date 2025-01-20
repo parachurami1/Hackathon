@@ -1,9 +1,9 @@
 <?php
     session_start();
-    $servername = "db"; // Service name of the database container
-    $username = "root";
-    $password = "root_password"; // Password set in docker-compose.yml
-    $dbname = "hackathon1";
+    $host = getenv('DB_HOST');
+    $user = getenv('DB_USER');
+    $password = getenv('DB_PASSWORD');
+    $dbname = getenv('DB_NAME');
 
     $conn = new mysqli($servername, $username, $password, $dbname);
 
