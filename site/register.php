@@ -1,8 +1,8 @@
 <?php
-$servername = getenv('DB_HOST');;
-$username = getenv('DB_USER');;
-$password = getenv('DB_PASSWORD');;
-$dbname = getenv('DB_NAME');;
+$servername = getenv('DB_SERVER') ?: 'db'; // Use 'db' as default, as that's the service name in Docker Compose
+$username = getenv('MYSQL_USER') ?: 'root'; // Default to root if not set
+$password = getenv('MYSQL_PASSWORD') ?: 'root_password'; // Default password, be sure to set in the environment
+$dbname = getenv('MYSQL_DATABASE') ?: 'hackathon1'; // Default database name
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
