@@ -8,7 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $sql = "SELECT * FROM users WHERE username = '$user' AND password = '$pass'"; // SQL Injection Vulnerability
     $result = $pdo->query($sql);
 
-    print_r($result);
+    //print_r($result);
     if ($result) {
         $_SESSION['username'] = $user; // Save session
 
