@@ -158,19 +158,19 @@ $row = $result->fetch(PDO::FETCH_ASSOC);
             <h3>Projects</h3>
             <div class="projects">
                 <div>
-                    <p><strong>Recent</strong></p>
-                    <p>Sam Disuja</p>
+                    <p><strong>Recent Users</strong></p>
+                    <p>me</p>
                 </div>
                 <div>
-                    <p><strong>Most Viewed</strong></p>
-                    <p>Dinoter husainm</p>
+                    <p><strong>Most Viewed Users</strong></p>
+                    <p>me</p>
                 </div>
             </div>
             <div class="social">
                 <a href="#" aria-label="Facebook">&#xf09a;</a>
                 <a href="#" aria-label="Twitter">&#xf099;</a>
                 <a href="#" aria-label="Instagram">&#xf16d;</a>
-                <p><?php if($user == "me"){print("sql_injection_flag");}?></p>
+                <p><?php if($user == "me"){print("flag: sql_1nj3ct10n_fl4g");}?></p>
             </div>
         </div>
     </div>
