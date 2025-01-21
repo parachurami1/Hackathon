@@ -5,22 +5,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $user = $_POST['username'];
     $pass = $_POST['password'];
 
-    $sql = "SELECT * FROM users WHERE username = '$user' AND password = '$pass'"; // SQL Injection Vulnerability
+    // Vulnerable query
+    $sql = "SELECT * FROM users WHERE username = '$user' AND password = '$pass'";
     $result = $pdo->query($sql);
 
-    //print_r($result);
-    if ($result) {
+    if ($result->rowCount() > 0) {
         $_SESSION['username'] = $user; // Save session
-
-        // echo "Login successful.";
-
         header("Location: home.php?user=" . urlencode($user));
-
     } else {
         echo "Invalid credentials.";
     }
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
