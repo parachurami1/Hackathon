@@ -131,8 +131,9 @@ $sql = "SELECT * FROM users WHERE username = '$user'";  // This allows SQL injec
 $result = $pdo->query($sql);  // Execute the query using PDO
 
 // Fetch the result as an associative array
+if($result){
 $row = $result->fetch(PDO::FETCH_ASSOC);
-
+}
 //print_r($row); // Uncomment to see the fetched row for debugging
 
 ?>
