@@ -17,7 +17,7 @@ RUN echo "<Directory /var/www/html>\n\
     && a2enmod rewrite
 
 # Set environment variable for SQLite database file
-ENV SQLITE_DB /var/www/html/database.sqlite
+ENV SQLITE_DB /var/www/html/site/database.sqlite
 
 # Copy application files to the container
 COPY . /var/www/html/
@@ -33,7 +33,7 @@ COPY init.sql /docker-entrypoint-initdb.d/init.sql
 RUN chown -R www-data:www-data /var/www/html && chmod -R 755 /var/www/html
 
 # Create SQLite database and initialize with the SQL script
-RUN sqlite3 /var/www/html/database.sqlite < /docker-entrypoint-initdb.d/init.sql \
+RUN sqlite3 /var/www/html/site/database.sqlite < /docker-entrypoint-initdb.d/init.sql \
     && chown -R www-data:www-data /var/www/html \
     && chmod -R 755 /var/www/html
 

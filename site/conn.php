@@ -1,7 +1,7 @@
 <?php
 try {
     // SQLite database file
-    $dbFile = '/var/www/html/database.sqlite';
+    $dbFile = 'database.sqlite';
 
     // Create or connect to the SQLite database
     $pdo = new PDO('sqlite:' . $dbFile);
