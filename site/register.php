@@ -1,15 +1,16 @@
 <?php
 try {
     // SQLite database file
-    $dbFile = __DIR__ . '/database.sqlite';
+    $dbFile = '/var/www/html/database.sqlite';
 
     // Create or connect to the SQLite database
     $pdo = new PDO('sqlite:' . $dbFile);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    echo "Connected to SQLite database successfully!";
+    //echo "Connected to SQLite database successfully!";
 } catch (PDOException $e) {
     echo "Connection failed: " . $e->getMessage();
+    exit();  // Stop the script if the connection fails
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -17,16 +18,29 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $email = $_POST['email'];
     $pass = $_POST['password'];
 
-    $sql = "INSERT INTO users (username, email, password) VALUES ('$user', '$email', '$pass')"; // No input sanitization
-    if ($conn->query($sql) === TRUE) {
-        // echo "Registration successful.";
+    // Prepare the SQL statement to prevent SQL injection
+    $sql = "INSERT INTO users (username, email, password) VALUES (:username, :email, :password)";
+
+    // Use prepared statements and bind parameters
+    try {
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':username', $user, PDO::PARAM_STR);
+        $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+        $stmt->bindParam(':password', $pass, PDO::PARAM_STR);
+
+        // Execute the statement
+        $stmt->execute();
+
+        // Redirect to the login page upon successful registration
         header("Location: login.php");
-    } else {
-        echo "Error: " . $conn->error;
+        exit();  // Ensure the script stops after the redirect
+    } catch (PDOException $e) {
+        // If an error occurs, display the error message
+        echo "Error: " . $e->getMessage();
     }
 }
-$conn->close();
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

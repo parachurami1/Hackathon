@@ -115,19 +115,28 @@ require('conn.php')
         </ul>
     </header>
     <div class="profile-card">
-        <?php
-        $user = $_GET['user'];
-        if(!isset($user)){
-            header("Location: login.php");
-        }
+    <?php
+// Ensure that you have the SQLite PDO connection in conn.php
+require('conn.php');
 
-        $sql = "SELECT * FROM users WHERE username = '$user'";
-        $result = $pdo->query($sql)
-        $row = SQLite3->
-        // print_r($row); // For debugging: to see the fetched row
+$user = $_GET['user'];  // Get the 'user' parameter from the URL
 
+if (!isset($user)) {
+    header("Location: login.php");  // Redirect if 'user' parameter is not set
+    exit;  // Stop further script execution after the redirect
+}
 
-        ?>
+// SQL query with direct injection of user input (vulnerable to SQL injection)
+$sql = "SELECT * FROM users WHERE username = '$user'";  // This allows SQL injection
+$result = $pdo->query($sql);  // Execute the query using PDO
+
+// Fetch the result as an associative array
+$row = $result->fetch(PDO::FETCH_ASSOC);
+
+print_r($row); // Uncomment to see the fetched row for debugging
+
+?>
+
         <div class="left">
             <img src="./pic.jpg" alt="Profile Picture">
             <h2><?php print($row['username'])?> </h2>

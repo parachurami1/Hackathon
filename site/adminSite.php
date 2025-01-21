@@ -1,23 +1,33 @@
 <?php
-require('conn.php');
+require('conn.php');  // Ensure this contains the PDO connection setup for SQLite
 
-$user = $_GET['user'];
-// print_r($user);
-$sql = "SELECT * FROM admin WHERE username = '$user'";
-$result = mysqli_query($conn,$sql);
-$row = mysqli_fetch_assoc($result);
-// print_r($row);
+$user = $_GET['user'];  // User input directly used in query
 
-if($row['email'] !== "admin@net.com"){
-    header("Location: admin.php");
+// Connect to the SQLite database using PDO (make sure this connection is in conn.php)
+try {
+    // Prepare the query to fetch the admin user by username
+    $sql = "SELECT * FROM admin WHERE username = '$user'";  // Direct SQL query (vulnerable to SQL injection)
+    $result = $pdo->query($sql);  // Execute the query using PDO's query method
+    $row = $result->fetch(PDO::FETCH_ASSOC);  // Fetch the result as an associative array
+
+    // Check if email is not equal to "admin@net.com"
+    if ($row['email'] !== "admin@net.com") {
+        header("Location: admin.php");
+        exit;  // Stop further execution after redirect
+    }
+
+    // Prepare the second query to fetch the admin user by username again
+    $sql2 = "SELECT * FROM admin WHERE username = '$user'";  // Same vulnerable query
+    $result2 = $pdo->query($sql2);  // Execute the query
+    $row2 = $result2->fetch(PDO::FETCH_ASSOC);  // Fetch the second result
+
+    // print_r($row2); // For debugging: to see the fetched row
+
+} catch (PDOException $e) {
+    echo "Error: " . $e->getMessage();
 }
-$sql2 = "SELECT * FROM admin WHERE username = '$user'";
-$result2 = mysqli_query($conn, $sql2);
-$row2 = mysqli_fetch_assoc($result2);
-// print_r($row); // For debugging: to see the fetched row
-
-
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

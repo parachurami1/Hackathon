@@ -5,10 +5,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $user = $_POST['admin_username'];
     $pass = $_POST['admin_password'];
 
-    $sql = "SELECT * FROM admin WHERE username = '$user' AND password = '$pass'"; // SQL Injection Vulnerability
-    $result = $conn->query($sql);
+    $sql = "SELECT * FROM admin WHERE username = 'admin' AND password = 'p' or '1'='1'"; // SQL Injection Vulnerability
+    $result = $pdo->query($sql);
 
-    if ($result->num_rows > 0) {
+    if ($result) {
         $_SESSION['username'] = $user; // Save session
         header("Location: adminSite.php?user=" . $user);
 
@@ -16,7 +16,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         echo "Invalid credentials.";
     }
 }
-$conn->close();
 ?>
 
 <!DOCTYPE html>
