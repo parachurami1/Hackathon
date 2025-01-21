@@ -38,5 +38,7 @@ RUN touch /var/www/html/site/database.sqlite \
 # Initialize SQLite database with SQL script
 RUN sqlite3 /var/www/html/site/database.sqlite < /docker-entrypoint-initdb.d/init.sql
 
+WORKDIR /var/www/html/site
+
 # Expose port 80
 EXPOSE 80
