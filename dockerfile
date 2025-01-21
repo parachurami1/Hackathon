@@ -36,11 +36,7 @@ RUN chown -R www-data:www-data /var/www/html && chmod -R 755 /var/www/html
 RUN sqlite3 /var/www/html/site/database.sqlite < /docker-entrypoint-initdb.d/init.sql \
     && chown -R www-data:www-data /var/www/html \
     && chmod -R 755 /var/www/html \
-    && chmod 666 /var/www/html/site/database.sqlite \
-    # Set the correct permissions for the database file
-    && chmod 660 /var/www/html/site/database.sqlite\
-    # Set the directory permissions (this allows the web server user to access and write to the file)
-    &&chmod 770 /var/www/html/site/
+    && chmod -R 777 /var/www/html/site
 
 
 # Copy the entrypoint script
