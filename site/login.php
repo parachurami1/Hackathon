@@ -6,9 +6,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $pass = $_POST['password'];
 
     $sql = "SELECT * FROM users WHERE username = '$user' AND password = '$pass'"; // SQL Injection Vulnerability
-    $result = $conn->query($sql);
+    $result = $pdo->query($sql);
 
-    if ($result->num_rows > 0) {
+    if ($result) {
         $_SESSION['username'] = $user; // Save session
 
         // echo "Login successful.";
@@ -19,7 +19,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         echo "Invalid credentials.";
     }
 }
-$conn->close();
 ?>
 <!DOCTYPE html>
 <html lang="en">

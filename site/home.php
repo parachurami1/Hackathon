@@ -122,8 +122,8 @@ require('conn.php')
         }
 
         $sql = "SELECT * FROM users WHERE username = '$user'";
-        $result = mysqli_query($conn, $sql);
-        $row = mysqli_fetch_assoc($result);
+        $result = $pdo->query($sql)
+        $row = SQLite3->
         // print_r($row); // For debugging: to see the fetched row
 
 

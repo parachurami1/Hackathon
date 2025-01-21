@@ -1,13 +1,14 @@
 <?php
-    session_start();
-    $servername = getenv('DB_SERVER') ?: 'mysql'; // Use 'db' as default, as that's the service name in Docker Compose
-    $username = getenv('MYSQL_USER') ?: 'root'; // Default to root if not set
-    $password = getenv('MYSQL_PASSWORD') ?: 'hackathon'; // Default password, be sure to set in the environment
-    $dbname = getenv('MYSQL_DATABASE') ?: 'hackathon1'; // Default database name
+try {
+    // SQLite database file
+    $dbFile = '/var/www/html/database.sqlite';
 
-    $conn = new mysqli($servername, $username, $password, $dbname, 3306);
+    // Create or connect to the SQLite database
+    $pdo = new PDO('sqlite:' . $dbFile);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
+   // echo "Connected to SQLite database successfully!";
+} catch (PDOException $e) {
+    echo "Connection failed: " . $e->getMessage();
+}
 ?>

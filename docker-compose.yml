@@ -1,22 +1,12 @@
 version: '3.8'
+
 services:
   app:
     build: .
     ports:
-      - "80:80"
+      - "8080:80"
+    volumes:
+      - .:/var/www/html
     environment:
-      DB_SERVER: mysql
-      MYSQL_USER: root
-      MYSQL_PASSWORD: hackathon
-      MYSQL_DATABASE: hackathon1
-    depends_on:
-      - mysql
-
-  mysql:
-    image: mysql:8.0
-    restart: always
-    environment:
-      MYSQL_ROOT_PASSWORD: hackathon
-      MYSQL_DATABASE: hackathon1
-    ports:
-      - "3306:3306"
+      # Environment variables can be used if needed
+      DB_FILE: /var/www/html/database.sqlite
