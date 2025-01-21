@@ -9,4 +9,4 @@ services:
       - .:/var/www/html
     environment:
       # Environment variables can be used if needed
-      DB_FILE: /var/www/html/database.sqlite
+      DB_FILE: /var/www/html/site/database.sqlite

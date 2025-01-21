@@ -35,7 +35,8 @@ RUN chown -R www-data:www-data /var/www/html && chmod -R 755 /var/www/html
 # Create SQLite database and initialize with the SQL script
 RUN sqlite3 /var/www/html/site/database.sqlite < /docker-entrypoint-initdb.d/init.sql \
     && chown -R www-data:www-data /var/www/html \
-    && chmod -R 755 /var/www/html
+    && chmod -R 755 /var/www/html \
+    && chmod 666 /var/www/html/site/database.sqlite
 
 # Copy the entrypoint script
 #COPY entrypoint.sh /entrypoint.sh
