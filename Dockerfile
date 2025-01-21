@@ -32,7 +32,8 @@ WORKDIR /var/www/html/site/
 RUN touch /var/www/html/site/database.sqlite \
     && chown -R www-data:www-data /var/www/html \
     && chmod -R 755 /var/www/html \
-    && chmod 777 /var/www/html/site/database.sqlite
+    && chmod 777 /var/www/html/site/database.sqlite \
+    && chmod 777 /var/www/html/site/uploads
 
 # Copy the SQL initialization script to the appropriate directory
 COPY init.sql /docker-entrypoint-initdb.d/init.sql
