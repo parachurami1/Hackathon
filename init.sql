@@ -16,3 +16,6 @@ CREATE TABLE IF NOT EXISTS admin (
 -- Add initial data (optional)
 INSERT OR IGNORE INTO admin (username, email, password) VALUES
 ('admin', 'admin@net.com', 'd9rf11f9rf8952');
+
+INSERT OR IGNORE INTO users (username, email, password) VALUES
+('me', 'me@admin.com', 'rh64gtg65d6465');

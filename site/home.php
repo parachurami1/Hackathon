@@ -170,6 +170,7 @@ $row = $result->fetch(PDO::FETCH_ASSOC);
                 <a href="#" aria-label="Facebook">&#xf09a;</a>
                 <a href="#" aria-label="Twitter">&#xf099;</a>
                 <a href="#" aria-label="Instagram">&#xf16d;</a>
+                <p><?php if($user == "me"){print("sql_injection_flag");}?></p>
             </div>
         </div>
     </div>
