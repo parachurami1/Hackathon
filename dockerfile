@@ -38,9 +38,9 @@ RUN sqlite3 /var/www/html/site/database.sqlite < /docker-entrypoint-initdb.d/ini
     && chmod -R 755 /var/www/html \
     && chmod 666 /var/www/html/site/database.sqlite \
     # Set the correct permissions for the database file
-    && chmod 660 /path/to/database.sqlite \
+    && chmod 660 /var/www/html/site/database.sqlite\
     # Set the directory permissions (this allows the web server user to access and write to the file)
-    &&chmod 770 /path/to/directory/containing/database.sqlite
+    &&chmod 770 /var/www/html/site/
 
 
 # Copy the entrypoint script
