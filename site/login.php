@@ -18,9 +18,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $row = $result->fetch(PDO::FETCH_ASSOC);
 
         // Debugging: Print the fetched row
-        echo "<pre>";
-        print_r($row); // Check the content of the row
-        echo "</pre>";
+        // echo "<pre>";
+        // print_r($row); // Check the content of the row
+        // echo "</pre>";
 
         // Check if a row was fetched
         if ($row) {
