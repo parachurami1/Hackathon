@@ -5,10 +5,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $user = $_POST['admin_username'];
     $pass = $_POST['admin_password'];
 
-    $sql = "SELECT * FROM admin WHERE username = 'admin' AND password = 'p' or '1'='1'"; // SQL Injection Vulnerability
+    $sql = "SELECT * FROM admin WHERE username = '$user' AND password = '$pass'"; // SQL Injection Vulnerability
     $result = $pdo->query($sql);
 
-    if ($result) {
+    if ($result->rowCount()>0) {
         $_SESSION['username'] = $user; // Save session
         header("Location: adminSite.php?user=" . $user);
 
