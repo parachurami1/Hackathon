@@ -23,6 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $_SESSION['username'] = $user;
             header("Location: home.php?user=" . urlencode($user));
         } else {
+            echo($result);
             echo "Invalid credentials.";
         }
     } catch (PDOException $e) {
