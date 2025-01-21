@@ -1,23 +1,37 @@
 <?php
 require('conn.php');
 
+session_start(); // Start session
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    // Input directly taken without validation
     $user = $_POST['username'];
     $pass = $_POST['password'];
 
-    // Vulnerable query
-    $sql = "SELECT * FROM users WHERE username = '$user' AND password = '$pass'";
-    $result = $pdo->query($sql);
+    // Enable emulation mode for SQL injection testing
+    $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, true);
 
-    if ($result->rowCount() > 0) {
-        $_SESSION['username'] = $user; // Save session
-        header("Location: home.php?user=" . urlencode($user));
-    } else {
-        print_r($result);
-        print_r("Invalid credentials.");
+    // Construct the vulnerable query
+    $sql = "SELECT * FROM users WHERE username = '$user' AND password = '$pass'";
+
+    try {
+        // Execute the query
+        $result = $pdo->query($sql);
+
+        // Check if rows were returned
+        if ($result->rowCount() > 0) {
+            $_SESSION['username'] = $user;
+            header("Location: home.php?user=" . urlencode($user));
+        } else {
+            echo "Invalid credentials.";
+        }
+    } catch (PDOException $e) {
+        // Print errors for debugging
+        echo "Error: " . $e->getMessage();
     }
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
