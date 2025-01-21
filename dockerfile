@@ -46,3 +46,4 @@ RUN sqlite3 /var/www/html/site/database.sqlite < /docker-entrypoint-initdb.d/ini
 ENTRYPOINT ["/entrypoint.sh"]
 # Expose port 80
 EXPOSE 80
+
