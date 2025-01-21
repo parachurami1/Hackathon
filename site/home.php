@@ -133,7 +133,7 @@ $result = $pdo->query($sql);  // Execute the query using PDO
 // Fetch the result as an associative array
 $row = $result->fetch(PDO::FETCH_ASSOC);
 
-print_r($row); // Uncomment to see the fetched row for debugging
+//print_r($row); // Uncomment to see the fetched row for debugging
 
 ?>
 
