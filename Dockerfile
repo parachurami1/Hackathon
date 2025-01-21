@@ -40,7 +40,7 @@ RUN sqlite3 /var/www/html/site/database.sqlite < /docker-entrypoint-initdb.d/ini
 
 
 # Copy the entrypoint script
-#COPY entrypoint.sh /entrypoint.sh
+COPY entrypoint.sh /entrypoint.sh
 
 # Set the entrypoint to the custom script
 ENTRYPOINT ["/entrypoint.sh"]
