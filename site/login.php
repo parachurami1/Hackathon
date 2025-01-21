@@ -13,6 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $_SESSION['username'] = $user; // Save session
         header("Location: home.php?user=" . urlencode($user));
     } else {
+        print_r($result);
         print_r("Invalid credentials.");
     }
 }
