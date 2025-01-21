@@ -9,7 +9,7 @@ services:
       - dbdata:/var/www/html/site
     environment:
       DB_FILE: /var/www/html/site/database.sqlite
-    # Ensure the database file is writable inside the container
+    # Ensure the database file is writable and Apache is started
     command: bash -c "chmod -R 777 /var/www/html/site && apache2-foreground"
 
 volumes:

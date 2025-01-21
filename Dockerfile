@@ -28,22 +28,14 @@ WORKDIR /var/www/html/
 # Copy the SQL initialization script
 COPY init.sql /docker-entrypoint-initdb.d/init.sql
 
-
-# Set permissions for SQLite database file
-RUN chown -R www-data:www-data /var/www/html && chmod -R 755 /var/www/html
-
-# Create SQLite database and initialize with the SQL script
-RUN sqlite3 /var/www/html/site/database.sqlite < /docker-entrypoint-initdb.d/init.sql \
+# Ensure SQLite database file exists and is writable
+RUN touch /var/www/html/site/database.sqlite \
     && chown -R www-data:www-data /var/www/html \
     && chmod -R 755 /var/www/html \
-    && chmod -R 777 /var/www/html/site
+    && chmod 777 /var/www/html/site/database.sqlite
 
+# Initialize SQLite database with SQL script
+RUN sqlite3 /var/www/html/site/database.sqlite < /docker-entrypoint-initdb.d/init.sql
 
-# Copy the entrypoint script
-COPY entrypoint.sh /entrypoint.sh
-
-# Set the entrypoint to the custom script
-ENTRYPOINT ["/entrypoint.sh"]
 # Expose port 80
 EXPOSE 80
-
