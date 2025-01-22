@@ -11,7 +11,7 @@ require("conn.php")
 </head>
 <body>
     <header>
-        <h1>Welcome to Cyber Security Hackathon</h1>
+        <h1>Welcome to GDGoC Cyber Security Hackathon</h1>
         <nav>
             <a href="login.php">Login</a>
             <a href="register.php">Register</a>
@@ -19,8 +19,8 @@ require("conn.php")
     </header>
     <main>
         <section>
-            <h2>Shopping Website</h2>
-            <p>Explore the vulnerabilities and learn how to secure your web applications.</p>
+            <h2>Welcome</h2>
+            <p>Explore the vulnerabilities, capture the flags and get points.</p>
         </section>
     </main>
 </body>
