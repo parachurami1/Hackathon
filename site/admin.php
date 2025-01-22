@@ -8,12 +8,29 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $sql = "SELECT * FROM admin WHERE username = '$user' AND password = '$pass'"; // SQL Injection Vulnerability
     $result = $pdo->query($sql);
 
-    if ($result->rowCount()>0) {
-        $_SESSION['username'] = $user; // Save session
-        header("Location: adminSite.php?user=" . $user);
+    try {
+        // Execute the query
+        $result = $pdo->query($sql);
 
-    } else {
-        echo "Invalid credentials.";
+        // Fetch the row
+        $row = $result->fetch(PDO::FETCH_ASSOC);
+
+        // Debugging: Print the fetched row
+        // echo "<pre>";
+        // print_r($row); // Check the content of the row
+        // echo "</pre>";
+
+        // Check if a row was fetched
+        if ($row) {
+            $_SESSION['username'] = $row['username']; // Save the username from the database
+            header("Location: adminSite.php?user=" . urlencode($row['username']));
+            exit; // Ensure no further code runs after the redirect
+        } else {
+            echo "Invalid credentials.";
+        }
+    } catch (PDOException $e) {
+        // Print errors for debugging
+        echo "Error: " . $e->getMessage();
     }
 }
 ?>
