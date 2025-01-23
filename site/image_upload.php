@@ -19,6 +19,3 @@
     </main>
 </body>
 </html>
-
-<!-- upload_image.php -->
-

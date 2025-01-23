@@ -110,7 +110,7 @@ require('conn.php')
     <header>
         <ul>
             <li><a href="logout.php">logout</a></li>
-            <li><a href="comment_section.php">Comments</a></li>
+            <!-- <li><a href="comment_section.php">Comments</a></li> -->
             <!-- <li><a href="image_upload.php">Upload image</a></li> -->
         </ul>
     </header>
