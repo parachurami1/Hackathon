@@ -4,7 +4,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $upload_dir = 'uploads/';
 
     if (move_uploaded_file($file['tmp_name'], $upload_dir . $file['name'])) { // No validation
-        echo "File uploaded successfully: " . $file['name'];
+        echo "File uploaded successfully: uploads/" . $file['name'];
     } else {
         echo "Failed to upload file.";
     }
